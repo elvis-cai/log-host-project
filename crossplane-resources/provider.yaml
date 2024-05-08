@@ -1,6 +1,15 @@
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
+  name: provider-gcp-bigquery
+spec:
+  package: xpkg.upbound.io/upbound/provider-gcp-bigquery:v1.1.0
+  controllerConfigRef:
+    name: custom-gcp-config
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
   name: provider-gcp-logging
 spec:
   package: xpkg.upbound.io/upbound/provider-gcp-logging:v1.1.0
