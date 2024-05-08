@@ -1,0 +1,22 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-gcp-logging
+spec:
+  package: xpkg.upbound.io/upbound/provider-gcp-logging:v1.1.0
+  controllerConfigRef:
+    name: custom-gcp-config
+---
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: custom-gcp-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  serviceAccountName: crossplane
+  args:
+    - --poll=10m
+    - -d
+    - --enable-management-policies
+    - --provider-ttl=600
